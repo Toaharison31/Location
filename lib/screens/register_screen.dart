@@ -1,55 +1,47 @@
 import 'package:flutter/material.dart';
 import '../models/user.dart';
-import '../services/register_service.dart';
+import '../services/user_service.dart';
 
-class RegisterScreen extends StatefulWidget{
-    const RegisterScreen({super.key});
+class RegisterScreen extends StatefulWidget {
+  const RegisterScreen({super.key});
 
-    @override
-    State<RegisterScreen> createState() => _RegisterScreenState();
+  @override
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-  
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(
-            children: [
-                TextField(
-                    controller: emailController,
-                ),
+      body: Column(
+        children: [
+          TextField(controller: emailController),
+          TextField(controller: passwordController),
 
-                TextField(
-                    controller: passwordController,
-                ),
-                
-                // Mamdefa requête any amin'ny backend
-                ElevatedButton(
-                    onPressed: () {
-                        final user = User(
-                            email: emailController.text,
-                            password: passwordController.text
-                        );
+          // Mamdefa requête any amin'ny backend
+          ElevatedButton(
+            onPressed: () async {
+              final user = User(
+                email: emailController.text,
+                password: passwordController.text,
+              );
+              final service = UserService();
 
-                        final service = UserService();
+              bool resultat = await service.register(user);
+              if (resultat) {
+                debugPrint("Compte créé avec succès!");
+              } else {
+                debugPrint("Erreur lors de la création du compte.\nVeuillez completer tous les champs.");
+              }
+            },
 
-                        bool resultat = service.register(user);
-                        if (resultat) {
-                            debugPrint("Compte créé");
-                        }
-                        else {
-                            debugPrint("Erreur");
-                        }
-                    },
-
-                    child: const Text("Créer un compte"),
-                ),
-            ],
-        ),
+            child: const Text("Créer un compte"),
+          ),
+        ],
+      ),
     );
   }
 }
-

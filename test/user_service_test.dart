@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:taxi/models/user.dart';
-import 'package:taxi/services/register_service.dart';
+import 'package:taxi/services/user_service.dart';
 
 void main(){
     /* vérification si les informations valides */
