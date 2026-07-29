@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/user.dart';
+import '../models/personne_model.dart';
 import '../services/user_service.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -28,7 +28,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 email: emailController.text,
                 password: passwordController.text,
               );
-              final service = UserService();
+              final service = PersonneService();
 
               bool resultat = await service.register(personne);
               if (resultat) {

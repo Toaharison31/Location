@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../models/user.dart';
+import '../models/personne_model.dart';
 import '../services/user_service.dart';
 
 class ReadScreen extends StatelessWidget {
@@ -7,7 +7,7 @@ class ReadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final personneService = UserService();
+    final personneService = PersonneService();
 
     return Scaffold(
       appBar: AppBar(title: const Text("Listes d'utilisateurs")),

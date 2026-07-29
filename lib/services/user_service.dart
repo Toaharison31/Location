@@ -1,8 +1,8 @@
 import '../database/database_helper.dart';
-import '../models/user.dart';
+import '../models/personne_model.dart';
 
 // place de la logique des donées
-class UserService {
+class PersonneService {
   // enregistrement
   Future<bool> register(Personne personne) async {
     // vérification
