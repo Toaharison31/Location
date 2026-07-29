@@ -1,11 +1,11 @@
 // Classe Utilisateur
-class User {
+class Personne {
   int? id;
   String email;
   String password;
 
   // constructeur
-  User({this.id, required this.email, required this.password});
+  Personne({this.id, required this.email, required this.password});
 
   // liste mampiditra
   Map<String, dynamic> toMap() => {
@@ -15,6 +15,13 @@ class User {
   };
 
   // query mamoaka
-  factory User.fromMap(Map<String, dynamic> map) =>
-      User(id: map['id'], email: map['email'], password: map['password']);
+  factory Personne.fromMap(Map<String, dynamic> map) =>
+      Personne(id: map['id'], email: map['email'], password: map['password']);
 }
+
+
+/**
+ * id_personne | nom | prenom | date_naissance | lieu_naissance | 
+sexe | image | telephone | telephone2 | adresse | email |
+numero_cin | date_cin | lieu_cin
+ */

@@ -7,12 +7,12 @@ class ReadScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final userService = UserService();
+    final personneService = UserService();
 
     return Scaffold(
       appBar: AppBar(title: const Text("Listes d'utilisateurs")),
-      body: FutureBuilder<List<User>>(
-        future: userService.getUsers(), // Ny getUsers() ao amin'ny UserService
+      body: FutureBuilder<List<Personne>>(
+        future: personneService.getPersonnes(), // Ny getUsers() ao amin'ny UserService
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -22,19 +22,19 @@ class ReadScreen extends StatelessWidget {
             return Center(child: Text("Erreur: ${snapshot.error}"));
           }
 
-          final users = snapshot.data ?? [];
-          if (users.isEmpty) {
+          final personnes = snapshot.data ?? [];
+          if (personnes.isEmpty) {
             return const Center(child: Text("Auccun utilisateur"));
           }
 
           return ListView.builder(
-            itemCount: users.length,
+            itemCount: personnes.length,
             itemBuilder: (context, index) {
-              final user = users[index];
+              final personne = personnes[index];
               return ListTile(
-                leading: CircleAvatar(child: Text("${user.id ?? ''}")),
-                title: Text(user.email),
-                subtitle: Text("Password: ${user.password}"),
+                leading: CircleAvatar(child: Text("${personne.id ?? ''}")),
+                title: Text(personne.email),
+                subtitle: Text("Password: ${personne.password}"),
               );
             },
           );

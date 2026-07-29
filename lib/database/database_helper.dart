@@ -18,13 +18,13 @@ class DatabaseHelper {
 
   // Create database raha mbola tsy misy
   Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'taxi.db');
+    String path = join(await getDatabasesPath(), 'location.db');
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute("""
-          CREATE TABLE user(
+          CREATE TABLE personne(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             email TEXT NOT NULL,
             password TEXT NOT NULL
@@ -35,15 +35,15 @@ class DatabaseHelper {
   // CRUD OPERATIONS
 
   // Insertion de l'utilisateur
-  Future<int> register(User user) async {
+  Future<int> register(Personne personne) async {
     final db = await database;
-    return await db.insert('user', user.toMap());
+    return await db.insert('personne', personne.toMap());
   }
 
   // Affichage
-  Future<List<User>> getAllUser() async {
+  Future<List<Personne>> getAllPersonne() async {
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('user');
-    return maps.map((map) => User.fromMap(map)).toList();
+    final List<Map<String, dynamic>> maps = await db.query('personne');
+    return maps.map((map) => Personne.fromMap(map)).toList();
   }
 }

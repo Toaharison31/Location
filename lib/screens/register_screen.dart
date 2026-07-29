@@ -24,13 +24,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
           // Mamdefa requête any amin'ny backend
           ElevatedButton(
             onPressed: () async {
-              final user = User(
+              final personne = Personne(
                 email: emailController.text,
                 password: passwordController.text,
               );
               final service = UserService();
 
-              bool resultat = await service.register(user);
+              bool resultat = await service.register(personne);
               if (resultat) {
                 debugPrint("Compte créé avec succès!");
               } else {

@@ -7,36 +7,36 @@ void main(){
     test('Informations valides', () {
         final service = UserService();
 
-        final user = User(
+        final personne = Personne(
             email: "test@gmail.com",
             password: "password123"
         );
 
-        expect(service.register(user), true);
+        expect(service.register(personne), true);
     });
 
     /* vérification si email vide */
     test('Échec si email vide', () {
         final service = UserService();
 
-        final user = User(
+        final personne = Personne(
             email: "",
             password: "password123"
         );
 
-        expect(service.register(user), false);
+        expect(service.register(personne), false);
     });
 
     /* vérification si mot de passe court */
     test('Échec si mot de passe court', () {
         final service = UserService();
 
-        final user = User(
+        final personne = Personne(
             email: "test@gmail.com",
             password: "pass123"
         );
 
-        expect(service.register(user), false);
+        expect(service.register(personne), false);
     });
 
 }

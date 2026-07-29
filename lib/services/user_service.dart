@@ -4,24 +4,24 @@ import '../models/user.dart';
 // place de la logique des donées
 class UserService {
   // enregistrement
-  Future<bool> register(User user) async {
+  Future<bool> register(Personne personne) async {
     // vérification
-    if (user.email.isEmpty) {
+    if (personne.email.isEmpty) {
       return false;
     }
 
-    if (user.password.length < 8) {
+    if (personne.password.length < 8) {
       return false;
     }
 
     final data = DatabaseHelper.instance;
-    int id = await data.register(user);
+    int id = await data.register(personne);
     
     return id > 0;
   }
 
   // Mamerina query affichage
-  Future<List<User>> getUsers() async {
-    return await DatabaseHelper.instance.getAllUser();
+  Future<List<Personne>> getPersonnes() async {
+    return await DatabaseHelper.instance.getAllPersonne();
   } 
 }
