@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/personne_model.dart';
-import '../services/user_service.dart';
+import '../services/personne_service.dart';
 
 class ReadScreen extends StatelessWidget {
   const ReadScreen({super.key});
@@ -12,7 +12,7 @@ class ReadScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text("Listes d'utilisateurs")),
       body: FutureBuilder<List<Personne>>(
-        future: personneService.getPersonnes(), // Ny getUsers() ao amin'ny UserService
+        future: personneService.getPersonnes(), // Ny getPersonnes() ao amin'ny PersonneService
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());
@@ -32,9 +32,9 @@ class ReadScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final personne = personnes[index];
               return ListTile(
-                leading: CircleAvatar(child: Text("${personne.id ?? ''}")),
-                title: Text(personne.email),
-                subtitle: Text("Password: ${personne.password}"),
+                leading: CircleAvatar(child: Text("${personne.idPersonne ?? ''}")),
+                title: Text(personne.nom),
+                subtitle: Text("Nom: ${personne.nom}"),
               );
             },
           );
