@@ -4,7 +4,7 @@ import '../models/personne_model.dart';
 // place de la logique des donées
 class PersonneService {
   // enregistrement
-  Future<bool> ajouterPersonne(Personne personne) async {
+  Future<bool> ajouterPersonne(PersonneModel personne) async {
     // vérification ou validation
     if (personne.isValid) {
       return false;
@@ -17,7 +17,7 @@ class PersonneService {
   }
 
   // Mamerina query affichage
-  Future<List<Personne>> getPersonnes() async {
+  Future<List<PersonneModel>> getPersonnes() async {
     return await DatabaseHelper.instance.getAllPersonnes();
   }
 }

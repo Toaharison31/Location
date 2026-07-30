@@ -1,5 +1,9 @@
 // Classe Personne
-class Personne {
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+
+class PersonneModel {
   int? idPersonne;
   String nom;
   String prenom;
@@ -7,14 +11,14 @@ class Personne {
   String lieuNaissance;
   String numeroCin;
   String sexe;
-  String? image;
+  File? image;
   String adresse;
   String telephone;
   String telephone2;
   String email;
 
   // constructeur
-  Personne({
+  PersonneModel({
     this.idPersonne,
     required this.nom,
     required this.prenom,
@@ -46,9 +50,9 @@ class Personne {
 
     bool verifierTexte = fields.any((field) => field.trim().isEmpty);
 
-    bool verifierImage = image == null || image!.isEmpty;
+    // bool verifierImage = image == null || image!.isEmpty;
 
-    if (verifierTexte || verifierImage) {
+    if (verifierTexte) {
       return false;
     }
 
@@ -72,7 +76,7 @@ class Personne {
   };
 
   // query mamoaka
-  factory Personne.fromMap(Map<String, dynamic> map) => Personne(
+  factory PersonneModel.fromMap(Map<String, dynamic> map) => PersonneModel(
     idPersonne: map['idPersonne'],
     nom: map['nom'],
     prenom: map['prenom'],

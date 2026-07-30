@@ -11,7 +11,7 @@ class ReadScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(title: const Text("Listes d'utilisateurs")),
-      body: FutureBuilder<List<Personne>>(
+      body: FutureBuilder<List<PersonneModel>>(
         future: personneService.getPersonnes(), // Ny getPersonnes() ao amin'ny PersonneService
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {

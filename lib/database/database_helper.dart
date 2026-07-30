@@ -35,15 +35,15 @@ class DatabaseHelper {
   // CRUD OPERATIONS
 
   // Insertion de l'utilisateur
-  Future<int> ajouterPersonne(Personne personne) async {
+  Future<int> ajouterPersonne(PersonneModel personne) async {
     final db = await database;
     return await db.insert('personne', personne.toMap());
   }
 
   // Affichage
-  Future<List<Personne>> getAllPersonnes() async {
+  Future<List<PersonneModel>> getAllPersonnes() async {
     final db = await database;
     final List<Map<String, dynamic>> maps = await db.query('personne');
-    return maps.map((map) => Personne.fromMap(map)).toList();
+    return maps.map((map) => PersonneModel.fromMap(map)).toList();
   }
 }
