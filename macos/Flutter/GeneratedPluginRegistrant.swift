@@ -5,10 +5,10 @@
 import FlutterMacOS
 import Foundation
 
-import native_splash_screen_macos
+import file_selector_macos
 import sqflite_darwin
 
 func RegisterGeneratedPlugins(registry: FlutterPluginRegistry) {
-  NativeSplashScreenMacosPlugin.register(with: registry.registrar(forPlugin: "NativeSplashScreenMacosPlugin"))
+  FileSelectorPlugin.register(with: registry.registrar(forPlugin: "FileSelectorPlugin"))
   SqflitePlugin.register(with: registry.registrar(forPlugin: "SqflitePlugin"))
 }
