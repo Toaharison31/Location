@@ -1,8 +1,6 @@
 // Classe Personne
 import 'dart:io';
 
-import 'package:flutter/material.dart';
-
 class PersonneModel {
   int? idPersonne;
   String nom;
