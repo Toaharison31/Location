@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../models/personne_model.dart';
 import '../services/personne_service.dart';
 
@@ -17,11 +18,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final lieuNaissanceController = TextEditingController();
   final numeroCinController = TextEditingController();
   final sexeController = TextEditingController();
-  File?   imageFile;
+  File? imageFile;
   final adresseController = TextEditingController();
   final telephoneController = TextEditingController();
   final telephone2Controller = TextEditingController();
   final emailController = TextEditingController();
+
+  // mampiditra image
+  Future<void> choisirPhoto() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? photo = await picker.pickImage(source: ImageSource.gallery);
+
+    if (photo != null) {
+      setState(() {
+        imageFile = File(photo.path);
+      });
+    }
+  }
 
   // Formulaire
   @override
@@ -29,25 +42,41 @@ class _RegisterScreenState extends State<RegisterScreen> {
     return Scaffold(
       body: Column(
         children: [
+          const SizedBox(height: 50, width: 0),
+
           TextField(
             controller: nomController,
             decoration: InputDecoration(
-              hintText: "nom...",
               labelText: "Nom",
               prefixIcon: Icon(Icons.person),
             ),
           ),
-          TextField(controller: prenomController),
+          TextField(
+            controller: prenomController,
+            decoration: InputDecoration(
+              labelText: "Prénom",
+              prefixIcon: Icon(Icons.person),
+            ),
+          ),
           TextField(controller: dateNaissanceController),
           TextField(controller: lieuNaissanceController),
           TextField(controller: numeroCinController),
           TextField(controller: sexeController),
-          imageFile != null
-            ? Image.file(
-              imageFile!,
-              width: 150,
-              height: 150,)
-            :const Text("Auccun image n'est selectionné"),
+          Center(
+            child: imageFile == null
+                ? const Icon(Icons.person, size: 100)
+                : Image.file(
+                    imageFile!,
+                    width: 100,
+                    height: 100,
+                    fit: BoxFit.cover,
+                  ),
+          ),
+          ElevatedButton.icon(
+            onPressed: choisirPhoto,
+            icon: const Icon(Icons.photo),
+            label: const Text('Choisir'),
+          ),
           TextField(controller: adresseController),
           TextField(controller: telephoneController),
           TextField(controller: telephone2Controller),
@@ -75,11 +104,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
               // Message de validation
               if (resultat) {
-                debugPrint("Compte créé avec succès!");
+                debugPrint("Personne ajouté!");
               } else {
-                debugPrint(
-                  "Erreur lors de la création du compte.\nVeuillez completer tous les champs.",
-                );
+                debugPrint("Erreur lors de l'ajout personne.");
               }
             },
 

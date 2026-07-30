@@ -6,7 +6,7 @@ class PersonneService {
   // enregistrement
   Future<bool> ajouterPersonne(PersonneModel personne) async {
     // vérification ou validation
-    if (personne.isValid) {
+    if (!personne.isValid) {
       return false;
     }
 
