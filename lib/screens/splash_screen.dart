@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../screens/register_screen.dart';
+import '../screens/registre_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -37,7 +37,6 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Image.asset('lib/screens/images/pneu.png', width: 100, height: 100,)
         )
       ),
-      
     );
   }
 }
