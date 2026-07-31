@@ -86,12 +86,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: SingleChildScrollView(
                 child: Column(
                   children: [
+                    
                     TextField(
                       controller: nomController,
                       decoration: const InputDecoration(
                         hintText: 'nom',
                         labelText: 'Nom',
-                        prefixIcon: Icon(Icons.person),
+                        
                       ),
                     ),
 
@@ -102,7 +103,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         hintText: 'prénom',
                         labelText: 'Prénom',
-                        prefixIcon: Icon(Icons.person),
+                        
                       ),
                     ),
 
@@ -150,14 +151,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                     ),
 
-                    const SizedBox(height: 1),
+                    const SizedBox(height: 5),
 
                     TextFormField(
                       controller: telephoneController,
                       decoration: InputDecoration(
                         hintText: 'tel1',
                         labelText: 'Téléphone 1',
-                        icon: Icon(Icons.phone),
+                        icon: Icon(Icons.phone_in_talk)                       
                       ),
                     ),
 
@@ -168,7 +169,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       decoration: InputDecoration(
                         hintText: 'tel2',
                         labelText: 'Téléphone 2',
-                        icon: Icon(Icons.phone),
+                        icon: Icon(Icons.phone)
                       ),
                     ),
 
@@ -215,6 +216,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         icon: Icon(Icons.roller_shades),
                       ),
                     ),
+
+                    const SizedBox(height: 10,),
 
                     Center(
                       child: FilledButton(
