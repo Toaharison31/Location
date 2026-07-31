@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 import '../models/personne_model.dart';
 import '../services/personne_service.dart';
 
@@ -37,7 +38,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            
+
             imageFile != null
             ? Image.file(
               imageFile!,
