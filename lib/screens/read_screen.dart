@@ -32,9 +32,9 @@ class ReadScreen extends StatelessWidget {
             itemBuilder: (context, index) {
               final personne = personnes[index];
               return ListTile(
-                leading: CircleAvatar(child: Text("${personne.idPersonne ?? ''}")),
-                title: Text(personne.nom),
-                subtitle: Text("Nom: ${personne.nom}"),
+                leading: CircleAvatar(child: Text("${personne.image ?? ''}")),
+                title: Text("${personne.nom} ${personne.prenom}"),
+                subtitle: Text("Tél: ${personne.telephone}"),
               );
             },
           );
