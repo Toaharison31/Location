@@ -2,71 +2,89 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import '../models/personne_model.dart';
 import '../services/personne_service.dart';
+import 'package:image_picker/image_picker.dart';
 
-
-class RegisterScreen extends StatefulWidget{
+class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
 
   @override
   State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _RegisterScreenState extends State<RegisterScreen>{
-
-
+class _RegisterScreenState extends State<RegisterScreen> {
   final nomController = TextEditingController();
   final prenomController = TextEditingController();
   final dateNaissanceController = TextEditingController();
   final lieuNaissanceController = TextEditingController();
   final numeroCinController = TextEditingController();
   final sexeController = TextEditingController();
-  File?   imageFile;
-
-  
+  File? imageFile;
   final adresseController = TextEditingController();
   final telephoneController = TextEditingController();
   final telephone2Controller = TextEditingController();
   final emailController = TextEditingController();
 
+  // mampiditra image
+  Future<void> choisirPhoto() async {
+    final ImagePicker picker = ImagePicker();
+    final XFile? photo = await picker.pickImage(source: ImageSource.gallery);
+
+    if (photo != null) {
+      setState(() {
+        imageFile = File(photo.path);
+      });
+    }
+  }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Inscription'),),
+      appBar: AppBar(title: const Text('Inscription')),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: .start,
           children: [
-            
-            imageFile != null
-            ? Image.file(
-              imageFile!,
-              width: 150,
-              height: 150,)
-            :const Text("Auccun image n'est selectionné"),
+            Center(
+              child: imageFile == null
+                  ? const Icon(Icons.person, size: 100)
+                  : Image.file(
+                      imageFile!,
+                      width: 100,
+                      height: 100,
+                      fit: BoxFit.cover,
+                    ),
+            ),
 
-            SizedBox(height: 5,),
+            ElevatedButton.icon(
+              onPressed: choisirPhoto,
+              icon: const Icon(Icons.photo),
+              label: const Text('Choisir'),
+            ),
+
+            SizedBox(height: 5),
 
             TextField(
               controller: nomController,
               decoration: const InputDecoration(
-                hintText: 'nom...',
+                hintText: 'nom',
                 labelText: 'Nom',
                 prefixIcon: Icon(Icons.person),
               ),
             ),
 
-            const SizedBox(height: 5,),
+            const SizedBox(height: 5),
 
             TextField(
               controller: prenomController,
               decoration: InputDecoration(
                 hintText: 'prénom',
                 labelText: 'Prénom',
+                prefixIcon: Icon(Icons.person),
               ),
             ),
 
-            const SizedBox(height: 5,),
+            const SizedBox(height: 5),
 
             TextFormField(
               controller: dateNaissanceController,
@@ -77,18 +95,18 @@ class _RegisterScreenState extends State<RegisterScreen>{
               ),
             ),
 
-            const SizedBox(height: 5,),
+            const SizedBox(height: 5),
 
             TextField(
               controller: lieuNaissanceController,
               decoration: InputDecoration(
                 hintText: 'lieu de naissance',
                 labelText: 'Lieu de naissance',
-                icon: Icon(Icons.location_on)
+                icon: Icon(Icons.location_on),
               ),
             ),
 
-            const SizedBox(height: 5,),
+            const SizedBox(height: 5),
 
             TextFormField(
               controller: numeroCinController,
@@ -99,18 +117,18 @@ class _RegisterScreenState extends State<RegisterScreen>{
               ),
             ),
 
-            const SizedBox(height: 5,),
+            const SizedBox(height: 5),
 
             TextField(
               controller: sexeController,
               decoration: InputDecoration(
                 hintText: 'homme/femme',
                 labelText: 'Sexe',
-                icon: Icon(Icons.wc)
+                icon: Icon(Icons.wc),
               ),
             ),
 
-            SizedBox(height: 5,),
+            SizedBox(height: 5),
 
             TextFormField(
               controller: adresseController,
@@ -121,7 +139,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
               ),
             ),
 
-            const SizedBox(height: 5,),
+            const SizedBox(height: 5),
 
             TextFormField(
               controller: telephoneController,
@@ -132,17 +150,18 @@ class _RegisterScreenState extends State<RegisterScreen>{
               ),
             ),
 
-            SizedBox(height: 5,),
+            SizedBox(height: 5),
 
             TextFormField(
               controller: telephone2Controller,
               decoration: InputDecoration(
                 hintText: 'tel2',
                 labelText: 'Téléphone 2',
+                icon: Icon(Icons.phone),
               ),
             ),
 
-            SizedBox(height: 5,),
+            SizedBox(height: 5),
 
             TextFormField(
               controller: emailController,
@@ -157,7 +176,7 @@ class _RegisterScreenState extends State<RegisterScreen>{
 
             Center(
               child: FilledButton(
-                onPressed: () async{
+                onPressed: () async {
                   final personne = PersonneModel(
                     nom: nomController.text,
                     prenom: prenomController.text,
@@ -183,15 +202,13 @@ class _RegisterScreenState extends State<RegisterScreen>{
                       "Erreur lors de la création du compte.\nVeuillez completer tous les champs.",
                     );
                   }
-
-                }, 
-                child: const Text('S`inscrire')
-              )
-            )
+                },
+                child: const Text('S`inscrire'),
+              ),
+            ),
           ],
         ),
-      )
+      ),
     );
   }
-
 }
