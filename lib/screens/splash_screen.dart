@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import '../screens/registre_screen.dart';
+import '../screens/register_screen.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -16,7 +16,6 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
 
     Future.delayed(
