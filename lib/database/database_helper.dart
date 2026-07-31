@@ -18,16 +18,25 @@ class DatabaseHelper {
 
   // Create database raha mbola tsy misy
   Future<Database> _initDatabase() async {
-    String path = join(await getDatabasesPath(), 'location.db');
+    String path = join(await getDatabasesPath(), 'test1.db');
     return await openDatabase(path, version: 1, onCreate: _onCreate);
   }
 
   Future<void> _onCreate(Database db, int version) async {
     await db.execute("""
           CREATE TABLE personne(
-            id INTEGER PRIMARY KEY AUTOINCREMENT,
-            email TEXT NOT NULL,
-            password TEXT NOT NULL
+            idPersonne INTEGER PRIMARY KEY AUTOINCREMENT,
+            nom TEXT NOT NULL,
+            prenom TEXT NOT NULL,
+            dateNaissance TEXT NOT NULL,
+            lieuNaissance TEXT NOT NULL,
+            numeroCin TEXT NOT NULL,
+            sexe TEXT CHECK(sexe IN('M','F')),
+            image TEXT NOT NULL,
+            adresse TEXT NOT NULL,
+            telephone TEXT NOT NULL,
+            telephone2 TEXT,
+            email TEXT
           );
       """);
   }

@@ -48,12 +48,9 @@ class PersonneModel {
 
     bool verifierTexte = fields.any((field) => field.trim().isEmpty);
 
-    // bool verifierImage = image == null || image!.isEmpty;
-
     if (verifierTexte) {
       return false;
     }
-
     return true;
   }
 
@@ -66,7 +63,7 @@ class PersonneModel {
     'lieuNaissance': lieuNaissance,
     'numeroCin': numeroCin,
     'sexe': sexe,
-    'image': image,
+    'image': image?.path,
     'adresse': adresse,
     'telephone': telephone,
     'telephone2': telephone2,
@@ -82,7 +79,7 @@ class PersonneModel {
     lieuNaissance: map['lieuNaissance'],
     numeroCin: map['numeroCin'],
     sexe: map['sexe'],
-    image: map['image'],
+    image: map['image'] != null ? File(map['image']) : null,
     adresse: map['adresse'],
     telephone: map['telephone'],
     telephone2: map['telephone2'],
