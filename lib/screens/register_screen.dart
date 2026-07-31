@@ -5,6 +5,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:taxi/models/proprietaire_model.dart';
 // import '../models/personne_model.dart';
 import '../services/personne_service.dart';
+import 'read_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -45,6 +46,16 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
+      //bouton en bas à droite
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(context, MaterialPageRoute(builder: (context) => ReadScreen()));
+        },
+        icon: Icon(Icons.list), 
+        label: Text('listes'),
+      ),
+
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: SingleChildScrollView(
@@ -53,11 +64,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             Center(
               child: imageFile == null
-                  ? const Icon(Icons.person, size: 20)
+                  ? const Icon(Icons.person, size: 40)
                   : Image.file(
                       imageFile!,
-                      width: 20,
-                      height: 20,
+                      width: 300,
+                      height: 200,
                       fit: BoxFit.cover,
                     ),
             ),
