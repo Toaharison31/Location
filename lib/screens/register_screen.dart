@@ -18,7 +18,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final lieuNaissanceController = TextEditingController();
   final numeroCinController = TextEditingController();
   final sexeController = TextEditingController();
-  File? imageFile;
+  File?   imageFile;
   final adresseController = TextEditingController();
   final telephoneController = TextEditingController();
   final telephone2Controller = TextEditingController();
