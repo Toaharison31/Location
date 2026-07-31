@@ -1,8 +1,10 @@
+// import 'dart:ffi';
 import 'dart:io';
 import 'package:flutter/material.dart';
-import '../models/personne_model.dart';
-import '../services/personne_service.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:taxi/models/proprietaire_model.dart';
+// import '../models/personne_model.dart';
+import '../services/personne_service.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -18,13 +20,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final lieuNaissanceController = TextEditingController();
   final numeroCinController = TextEditingController();
   final sexeController = TextEditingController();
-
   File? imageFile;
 
   final adresseController = TextEditingController();
   final telephoneController = TextEditingController();
   final telephone2Controller = TextEditingController();
   final emailController = TextEditingController();
+  final nombreMotosController = TextEditingController();
+  final dateInscriptionController = TextEditingController();
+  final roleController = TextEditingController();
 
   // mampiditra image
   Future<void> choisirPhoto() async {
@@ -41,7 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Inscription')),
+      // appBar: AppBar(title: const Text('Inscription')),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
@@ -49,11 +53,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
           children: [
             Center(
               child: imageFile == null
-                  ? const Icon(Icons.person, size: 100)
+                  ? const Icon(Icons.person, size: 20)
                   : Image.file(
                       imageFile!,
-                      width: 100,
-                      height: 100,
+                      width: 20,
+                      height: 20,
                       fit: BoxFit.cover,
                     ),
             ),
@@ -64,7 +68,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               label: const Text('Choisir'),
             ),
 
-            SizedBox(height: 5),
+            SizedBox(height: 1),
 
             Padding(
               padding: const EdgeInsets.all(0),
@@ -79,7 +83,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 5),
+            const SizedBox(height: 5),
 
                   TextField(
                     controller: prenomController,
@@ -90,7 +94,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 5),
+            const SizedBox(height: 5),
 
                   TextFormField(
                     controller: dateNaissanceController,
@@ -101,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                   ),
 
-                  const SizedBox(height: 5),
+            const SizedBox(height: 5),
 
                   TextField(
                     controller: lieuNaissanceController,
@@ -115,7 +119,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
-            const SizedBox(height: 5),
+            const SizedBox(height: 1),
 
             TextFormField(
               controller: numeroCinController,
@@ -126,18 +130,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
-            const SizedBox(height: 5),
-
-            TextField(
-              controller: sexeController,
-              decoration: InputDecoration(
-                hintText: 'homme/femme',
-                labelText: 'Sexe',
-                icon: Icon(Icons.wc),
-              ),
-            ),
-
-            SizedBox(height: 5),
+            const SizedBox(height: 1),
 
             TextFormField(
               controller: adresseController,
@@ -148,7 +141,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
-            const SizedBox(height: 5),
+            const SizedBox(height: 1),
 
             TextFormField(
               controller: telephoneController,
@@ -159,7 +152,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
-            SizedBox(height: 5),
+            const SizedBox(height: 1),
 
             TextFormField(
               controller: telephone2Controller,
@@ -170,7 +163,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
-            SizedBox(height: 5),
+            const SizedBox(height: 1),
 
             TextFormField(
               controller: emailController,
@@ -181,27 +174,63 @@ class _RegisterScreenState extends State<RegisterScreen> {
               ),
             ),
 
-            const SizedBox(height: 10),
+            const SizedBox(height: 1),
+
+            TextFormField(
+              controller: nombreMotosController,
+              decoration: InputDecoration(
+                hintText: 'nombre motos',
+                labelText: 'Nombre motos',
+                icon: Icon(Icons.motorcycle),
+              ),
+            ),
+
+            const SizedBox(height: 1),
+
+            TextFormField(
+              controller: dateInscriptionController,
+              decoration: InputDecoration(
+                hintText: 'date d\'inscription',
+                labelText: 'Date d\'inscription',
+                icon: Icon(Icons.date_range),
+              ),
+            ),
+
+            const SizedBox(height: 1),
+
+            TextFormField(
+              controller: roleController,
+              decoration: InputDecoration(
+                hintText: 'rôle',
+                labelText: 'Role',
+                icon: Icon(Icons.roller_shades),
+              ),
+            ),
 
             Center(
               child: FilledButton(
                 onPressed: () async {
-                  final personne = PersonneModel(
+                  final proprietaire = ProprietaireModel(
+                    
                     nom: nomController.text,
                     prenom: prenomController.text,
                     dateNaissance: dateNaissanceController.text,
                     lieuNaissance: lieuNaissanceController.text,
                     numeroCin: numeroCinController.text,
-                    sexe: sexeController.text,
                     image: imageFile,
                     adresse: adresseController.text,
                     telephone: telephoneController.text,
                     telephone2: telephone2Controller.text,
                     email: emailController.text,
+                    nombreMotos: int.parse(nombreMotosController.text),
+                    dateInscription: dateInscriptionController.text,
+                    role: roleController.text,
                   );
 
                   final service = PersonneService();
-                  bool resultat = await service.ajouterPersonne(personne);
+                  bool resultat = await service.ajouterProprietaire(
+                    proprietaire,
+                  );
 
                   // Message de validation
                   if (resultat) {
