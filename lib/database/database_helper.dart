@@ -1,6 +1,7 @@
 import 'package:sqflite/sqflite.dart';
 import 'package:path/path.dart';
-import '../models/personne_model.dart';
+//import '../models/personne_model.dart';
+import '../models/proprietaire_model.dart';
 
 class DatabaseHelper {
   // Singleton
@@ -31,28 +32,46 @@ class DatabaseHelper {
             dateNaissance TEXT NOT NULL,
             lieuNaissance TEXT NOT NULL,
             numeroCin TEXT NOT NULL,
-            sexe TEXT CHECK(sexe IN('M','F')),
             image TEXT NOT NULL,
             adresse TEXT NOT NULL,
             telephone TEXT NOT NULL,
             telephone2 TEXT,
             email TEXT
           );
+
+          CREATE TABLE proprietaire(
+            idProprietaire INTEGER PRIMARY KEY REFERENCES personne(idPersonne),
+            nombreMotos INTEGER NOT NULL,
+            dateInscription TEXT NOT NULL,
+            role TEXT CHECK(role IN('Admin', 'Manager'))
+          );
       """);
   }
 
   // CRUD OPERATIONS
 
-  // Insertion de l'utilisateur
-  Future<int> ajouterPersonne(PersonneModel personne) async {
+  // Insertion de personne
+  /*Future<int> ajouterPersonne(
+    PersonneModel personne,
+  ) async {
     final db = await database;
-    return await db.insert('personne', personne.toMap());
+    return await db.insert('personne', personne.toMapPersonne());
+  }*/
+
+  // insertion proprietaire
+  Future<int> ajouterProprietaire(
+    ProprietaireModel proprietaire,
+  ) async {
+    final db = await database;
+    return await db.insert('proprietaire', proprietaire.toMapProprietaire());
   }
 
   // Affichage
-  Future<List<PersonneModel>> getAllPersonnes() async {
+  Future<List<ProprietaireModel>> getAllPersonnes() async {
     final db = await database;
-    final List<Map<String, dynamic>> maps = await db.query('personne');
-    return maps.map((map) => PersonneModel.fromMap(map)).toList();
+    final List<Map<String, dynamic>> maps = await db.query('proprietaire');
+    return maps.map((map) => ProprietaireModel.fromMapProprietaire(map)).toList();
   }
+
+  
 }

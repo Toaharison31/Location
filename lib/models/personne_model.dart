@@ -8,7 +8,6 @@ class PersonneModel {
   String dateNaissance;
   String lieuNaissance;
   String numeroCin;
-  String sexe;
   File? image;
   String adresse;
   String telephone;
@@ -23,7 +22,6 @@ class PersonneModel {
     required this.dateNaissance,
     required this.lieuNaissance,
     required this.numeroCin,
-    required this.sexe,
     this.image,
     required this.adresse,
     required this.telephone,
@@ -32,14 +30,13 @@ class PersonneModel {
   });
 
   // validation du formulaire
-  bool get isValid {
+  bool get isValidPersonne {
     final fields = [
       nom,
       prenom,
       dateNaissance,
       lieuNaissance,
       numeroCin,
-      sexe,
       adresse,
       telephone,
       telephone2,
@@ -55,14 +52,13 @@ class PersonneModel {
   }
 
   // liste mampiditra
-  Map<String, dynamic> toMap() => {
+  Map<String, dynamic> toMapPersonne() => {
     'idPersonne': idPersonne,
     'nom': nom,
     'prenom': prenom,
     'dateNaissance': dateNaissance,
     'lieuNaissance': lieuNaissance,
     'numeroCin': numeroCin,
-    'sexe': sexe,
     'image': image?.path,
     'adresse': adresse,
     'telephone': telephone,
@@ -71,14 +67,13 @@ class PersonneModel {
   };
 
   // query mamoaka
-  factory PersonneModel.fromMap(Map<String, dynamic> map) => PersonneModel(
+  factory PersonneModel.fromMapPersonne(Map<String, dynamic> map) => PersonneModel(
     idPersonne: map['idPersonne'],
     nom: map['nom'],
     prenom: map['prenom'],
     dateNaissance: map['dateNaissance'],
     lieuNaissance: map['lieuNaissance'],
     numeroCin: map['numeroCin'],
-    sexe: map['sexe'],
     image: map['image'] != null ? File(map['image']) : null,
     adresse: map['adresse'],
     telephone: map['telephone'],
