@@ -45,10 +45,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(title: const Text('Inscription')),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
-        child: Column(
+        child: SingleChildScrollView(
+          child: Column(
           crossAxisAlignment: .start,
           children: [
             Center(
@@ -72,179 +72,181 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
             Padding(
               padding: const EdgeInsets.all(0),
-              child: Column(
-                children: [
-                  TextField(
-                    controller: nomController,
-                    decoration: const InputDecoration(
-                      hintText: 'nom',
-                      labelText: 'Nom',
-                      prefixIcon: Icon(Icons.person),
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    TextField(
+                      controller: nomController,
+                      decoration: const InputDecoration(
+                        hintText: 'nom',
+                        labelText: 'Nom',
+                        prefixIcon: Icon(Icons.person),
+                      ),
                     ),
-                  ),
 
-            const SizedBox(height: 5),
+                    const SizedBox(height: 5),
 
-                  TextField(
-                    controller: prenomController,
-                    decoration: InputDecoration(
-                      hintText: 'prénom',
-                      labelText: 'Prénom',
-                      prefixIcon: Icon(Icons.person),
+                    TextField(
+                      controller: prenomController,
+                      decoration: InputDecoration(
+                        hintText: 'prénom',
+                        labelText: 'Prénom',
+                        prefixIcon: Icon(Icons.person),
+                      ),
                     ),
-                  ),
 
-            const SizedBox(height: 5),
+                    const SizedBox(height: 5),
 
-                  TextFormField(
-                    controller: dateNaissanceController,
-                    decoration: InputDecoration(
-                      hintText: 'jj/mm/aaaa',
-                      labelText: 'Date de naissance',
-                      icon: Icon(Icons.cake),
+                    TextFormField(
+                      controller: dateNaissanceController,
+                      decoration: InputDecoration(
+                        hintText: 'jj/mm/aaaa',
+                        labelText: 'Date de naissance',
+                        icon: Icon(Icons.cake),
+                      ),
                     ),
-                  ),
 
-            const SizedBox(height: 5),
+                    const SizedBox(height: 5),
 
-                  TextField(
-                    controller: lieuNaissanceController,
-                    decoration: InputDecoration(
-                      hintText: 'lieu de naissance',
-                      labelText: 'Lieu de naissance',
-                      icon: Icon(Icons.location_on),
+                    TextField(
+                      controller: lieuNaissanceController,
+                      decoration: InputDecoration(
+                        hintText: 'lieu de naissance',
+                        labelText: 'Lieu de naissance',
+                        icon: Icon(Icons.location_on),
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: numeroCinController,
-              decoration: InputDecoration(
-                hintText: 'numero CIN',
-                labelText: 'CIN',
-                icon: Icon(Icons.badge),
-              ),
-            ),
+                    TextFormField(
+                      controller: numeroCinController,
+                      decoration: InputDecoration(
+                        hintText: 'numero CIN',
+                        labelText: 'CIN',
+                        icon: Icon(Icons.badge),
+                      ),
+                    ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: adresseController,
-              decoration: InputDecoration(
-                hintText: 'addresse',
-                labelText: 'Adresse',
-                icon: Icon(Icons.home),
-              ),
-            ),
+                    TextFormField(
+                      controller: adresseController,
+                      decoration: InputDecoration(
+                        hintText: 'addresse',
+                        labelText: 'Adresse',
+                        icon: Icon(Icons.home),
+                      ),
+                    ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: telephoneController,
-              decoration: InputDecoration(
-                hintText: 'tel1',
-                labelText: 'Téléphone 1',
-                icon: Icon(Icons.phone),
-              ),
-            ),
+                    TextFormField(
+                      controller: telephoneController,
+                      decoration: InputDecoration(
+                        hintText: 'tel1',
+                        labelText: 'Téléphone 1',
+                        icon: Icon(Icons.phone),
+                      ),
+                    ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: telephone2Controller,
-              decoration: InputDecoration(
-                hintText: 'tel2',
-                labelText: 'Téléphone 2',
-                icon: Icon(Icons.phone),
-              ),
-            ),
+                    TextFormField(
+                      controller: telephone2Controller,
+                      decoration: InputDecoration(
+                        hintText: 'tel2',
+                        labelText: 'Téléphone 2',
+                        icon: Icon(Icons.phone),
+                      ),
+                    ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: emailController,
-              decoration: InputDecoration(
-                hintText: '...@gmail.com',
-                labelText: 'Mail',
-                icon: Icon(Icons.mail),
-              ),
-            ),
+                    TextFormField(
+                      controller: emailController,
+                      decoration: InputDecoration(
+                        hintText: '...@gmail.com',
+                        labelText: 'Mail',
+                        icon: Icon(Icons.mail),
+                      ),
+                    ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: nombreMotosController,
-              decoration: InputDecoration(
-                hintText: 'nombre motos',
-                labelText: 'Nombre motos',
-                icon: Icon(Icons.motorcycle),
-              ),
-            ),
+                    TextFormField(
+                      controller: nombreMotosController,
+                      decoration: InputDecoration(
+                        hintText: 'nombre motos',
+                        labelText: 'Nombre motos',
+                        icon: Icon(Icons.motorcycle),
+                      ),
+                    ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: dateInscriptionController,
-              decoration: InputDecoration(
-                hintText: 'date d\'inscription',
-                labelText: 'Date d\'inscription',
-                icon: Icon(Icons.date_range),
-              ),
-            ),
+                    TextFormField(
+                      controller: dateInscriptionController,
+                      decoration: InputDecoration(
+                        hintText: 'date d\'inscription',
+                        labelText: 'Date d\'inscription',
+                        icon: Icon(Icons.date_range),
+                      ),
+                    ),
 
-            const SizedBox(height: 1),
+                    const SizedBox(height: 1),
 
-            TextFormField(
-              controller: roleController,
-              decoration: InputDecoration(
-                hintText: 'rôle',
-                labelText: 'Role',
-                icon: Icon(Icons.roller_shades),
-              ),
-            ),
+                    TextFormField(
+                      controller: roleController,
+                      decoration: InputDecoration(
+                        hintText: 'rôle',
+                        labelText: 'Role',
+                        icon: Icon(Icons.roller_shades),
+                      ),
+                    ),
 
-            Center(
-              child: FilledButton(
-                onPressed: () async {
-                  final proprietaire = ProprietaireModel(
-                    
-                    nom: nomController.text,
-                    prenom: prenomController.text,
-                    dateNaissance: dateNaissanceController.text,
-                    lieuNaissance: lieuNaissanceController.text,
-                    numeroCin: numeroCinController.text,
-                    image: imageFile,
-                    adresse: adresseController.text,
-                    telephone: telephoneController.text,
-                    telephone2: telephone2Controller.text,
-                    email: emailController.text,
-                    nombreMotos: int.parse(nombreMotosController.text),
-                    dateInscription: dateInscriptionController.text,
-                    role: roleController.text,
-                  );
+                    Center(
+                      child: FilledButton(
+                        onPressed: () async {
+                          final proprietaire = ProprietaireModel(
+                            nom: nomController.text,
+                            prenom: prenomController.text,
+                            dateNaissance: dateNaissanceController.text,
+                            lieuNaissance: lieuNaissanceController.text,
+                            numeroCin: numeroCinController.text,
+                            image: imageFile,
+                            adresse: adresseController.text,
+                            telephone: telephoneController.text,
+                            telephone2: telephone2Controller.text,
+                            email: emailController.text,
+                            nombreMotos: int.parse(nombreMotosController.text),
+                            dateInscription: dateInscriptionController.text,
+                            role: roleController.text,
+                          );
 
-                  final service = PersonneService();
-                  bool resultat = await service.ajouterProprietaire(
-                    proprietaire,
-                  );
+                          final service = PersonneService();
+                          bool resultat = await service.ajouterProprietaire(
+                            proprietaire,
+                          );
 
-                  // Message de validation
-                  if (resultat) {
-                    debugPrint("Compte créé avec succès!");
-                  } else {
-                    debugPrint(
-                      "Erreur lors de la création du compte.\nVeuillez completer tous les champs.",
-                    );
-                  }
-                },
-                child: const Text('S`inscrire'),
+                          // Message de validation
+                          if (resultat) {
+                            debugPrint("Compte créé avec succès!");
+                          } else {
+                            debugPrint(
+                              "Erreur lors de la création du compte.\nVeuillez completer tous les champs.",
+                            );
+                          }
+                        },
+                        child: const Text('S`inscrire'),
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],
+        ),
         ),
       ),
     );
